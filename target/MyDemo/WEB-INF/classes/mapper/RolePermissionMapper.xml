@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.dao.RolePermissionMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.entity.RolePermission" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="roleid" property="roleid" jdbcType="INTEGER" />
+    <result column="permid" property="permid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, roleid, permid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from role_perm
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from role_perm
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.entity.RolePermission" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      select uuid_short()
+    </selectKey>
+    insert into role_perm (id, roleid, permid
+      )
+    values (#{id,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{permid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.entity.RolePermission" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      select uuid_short()
+    </selectKey>
+    insert into role_perm
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="roleid != null" >
+        roleid,
+      </if>
+      <if test="permid != null" >
+        permid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="permid != null" >
+        #{permid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.entity.RolePermission" >
+    update role_perm
+    <set >
+      <if test="roleid != null" >
+        roleid = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="permid != null" >
+        permid = #{permid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.entity.RolePermission" >
+    update role_perm
+    set roleid = #{roleid,jdbcType=INTEGER},
+      permid = #{permid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

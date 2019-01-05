@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.dao.PlayerMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.entity.Player" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="day_time" property="dayTime" jdbcType="INTEGER" />
+    <result column="playing" property="playing" jdbcType="INTEGER" />
+    <result column="gp" property="gp" jdbcType="TINYINT" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="lookon" property="lookon" jdbcType="INTEGER" />
+    <result column="gametype" property="gametype" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, day_time, playing, gp, type, lookon, gametype
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from player
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from player
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.entity.Player" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      select uuid_short()
+    </selectKey>
+    insert into player (id, day_time, playing, 
+      gp, type, lookon, gametype
+      )
+    values (#{id,jdbcType=INTEGER}, #{dayTime,jdbcType=INTEGER}, #{playing,jdbcType=INTEGER}, 
+      #{gp,jdbcType=TINYINT}, #{type,jdbcType=VARCHAR}, #{lookon,jdbcType=INTEGER}, #{gametype,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.entity.Player" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      select uuid_short()
+    </selectKey>
+    insert into player
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="dayTime != null" >
+        day_time,
+      </if>
+      <if test="playing != null" >
+        playing,
+      </if>
+      <if test="gp != null" >
+        gp,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="lookon != null" >
+        lookon,
+      </if>
+      <if test="gametype != null" >
+        gametype,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="dayTime != null" >
+        #{dayTime,jdbcType=INTEGER},
+      </if>
+      <if test="playing != null" >
+        #{playing,jdbcType=INTEGER},
+      </if>
+      <if test="gp != null" >
+        #{gp,jdbcType=TINYINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="lookon != null" >
+        #{lookon,jdbcType=INTEGER},
+      </if>
+      <if test="gametype != null" >
+        #{gametype,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.entity.Player" >
+    update player
+    <set >
+      <if test="dayTime != null" >
+        day_time = #{dayTime,jdbcType=INTEGER},
+      </if>
+      <if test="playing != null" >
+        playing = #{playing,jdbcType=INTEGER},
+      </if>
+      <if test="gp != null" >
+        gp = #{gp,jdbcType=TINYINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="lookon != null" >
+        lookon = #{lookon,jdbcType=INTEGER},
+      </if>
+      <if test="gametype != null" >
+        gametype = #{gametype,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.entity.Player" >
+    update player
+    set day_time = #{dayTime,jdbcType=INTEGER},
+      playing = #{playing,jdbcType=INTEGER},
+      gp = #{gp,jdbcType=TINYINT},
+      type = #{type,jdbcType=VARCHAR},
+      lookon = #{lookon,jdbcType=INTEGER},
+      gametype = #{gametype,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from player
+  </select>
+
+</mapper>

@@ -1,0 +1,61 @@
+/**
+   登录按钮样式
+ */
+.login_btn{
+    color: white;
+    margin: 0 10px;
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+/**
+登录界面注册按钮
+ */
+.login_register{
+    text-align: center;
+    margin-top: 40px;
+    color: wheat;
+}
+.login_register a:link {
+    color: wheat;
+    text-decoration: none;
+}
+.login_register a:visited {
+    color: wheat;
+    text-decoration: none;
+}
+.login_register a:hover {
+    color: wheat;
+    text-decoration: none;
+}
+/**
+注册界面样式
+ */
+.register_label{
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    display: inline-block;
+    width: 80px;
+    text-align: right;
+}
+.register_input{
+    width: 70%;
+}
+.register_div{
+    text-align: center;
+}
+.register_title{
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+.register_radio{
+    width: auto;
+}
+.register_con{
+    display: inline-block;
+    width: 70%;
+    color: white;
+    text-align: left;
+}

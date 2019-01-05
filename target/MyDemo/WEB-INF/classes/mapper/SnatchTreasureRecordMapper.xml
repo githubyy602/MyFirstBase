@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="test.bak.mapper.SnatchTreasureRecordMapper" >
+  <resultMap id="BaseResultMap" type="test.bak.model.SnatchTreasureRecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="awardid" property="awardid" jdbcType="INTEGER" />
+    <result column="treasureNo" property="treasureno" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="range" property="range" jdbcType="INTEGER" />
+    <result column="dateNo" property="dateno" jdbcType="VARCHAR" />
+    <result column="ceateTime" property="ceatetime" jdbcType="TIMESTAMP" />
+    <result column="modifyTime" property="modifytime" jdbcType="TIMESTAMP" />
+    <result column="ext1" property="ext1" jdbcType="VARCHAR" />
+    <result column="ext2" property="ext2" jdbcType="VARCHAR" />
+    <result column="ext3" property="ext3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, mid, awardid, treasureNo, status, range, dateNo, ceateTime, modifyTime, ext1, 
+    ext2, ext3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from snatch_treasure_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from snatch_treasure_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="test.bak.model.SnatchTreasureRecord" >
+    insert into snatch_treasure_record (id, mid, awardid, 
+      treasureNo, status, range, 
+      dateNo, ceateTime, modifyTime, 
+      ext1, ext2, ext3)
+    values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{awardid,jdbcType=INTEGER}, 
+      #{treasureno,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{range,jdbcType=INTEGER}, 
+      #{dateno,jdbcType=VARCHAR}, #{ceatetime,jdbcType=TIMESTAMP}, #{modifytime,jdbcType=TIMESTAMP}, 
+      #{ext1,jdbcType=VARCHAR}, #{ext2,jdbcType=VARCHAR}, #{ext3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="test.bak.model.SnatchTreasureRecord" >
+    insert into snatch_treasure_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="awardid != null" >
+        awardid,
+      </if>
+      <if test="treasureno != null" >
+        treasureNo,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="range != null" >
+        range,
+      </if>
+      <if test="dateno != null" >
+        dateNo,
+      </if>
+      <if test="ceatetime != null" >
+        ceateTime,
+      </if>
+      <if test="modifytime != null" >
+        modifyTime,
+      </if>
+      <if test="ext1 != null" >
+        ext1,
+      </if>
+      <if test="ext2 != null" >
+        ext2,
+      </if>
+      <if test="ext3 != null" >
+        ext3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="awardid != null" >
+        #{awardid,jdbcType=INTEGER},
+      </if>
+      <if test="treasureno != null" >
+        #{treasureno,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="range != null" >
+        #{range,jdbcType=INTEGER},
+      </if>
+      <if test="dateno != null" >
+        #{dateno,jdbcType=VARCHAR},
+      </if>
+      <if test="ceatetime != null" >
+        #{ceatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifytime != null" >
+        #{modifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ext1 != null" >
+        #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null" >
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="ext3 != null" >
+        #{ext3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="test.bak.model.SnatchTreasureRecord" >
+    update snatch_treasure_record
+    <set >
+      <if test="mid != null" >
+        mid = #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="awardid != null" >
+        awardid = #{awardid,jdbcType=INTEGER},
+      </if>
+      <if test="treasureno != null" >
+        treasureNo = #{treasureno,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="range != null" >
+        range = #{range,jdbcType=INTEGER},
+      </if>
+      <if test="dateno != null" >
+        dateNo = #{dateno,jdbcType=VARCHAR},
+      </if>
+      <if test="ceatetime != null" >
+        ceateTime = #{ceatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifytime != null" >
+        modifyTime = #{modifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ext1 != null" >
+        ext1 = #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null" >
+        ext2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="ext3 != null" >
+        ext3 = #{ext3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test.bak.model.SnatchTreasureRecord" >
+    update snatch_treasure_record
+    set mid = #{mid,jdbcType=INTEGER},
+      awardid = #{awardid,jdbcType=INTEGER},
+      treasureNo = #{treasureno,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      range = #{range,jdbcType=INTEGER},
+      dateNo = #{dateno,jdbcType=VARCHAR},
+      ceateTime = #{ceatetime,jdbcType=TIMESTAMP},
+      modifyTime = #{modifytime,jdbcType=TIMESTAMP},
+      ext1 = #{ext1,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR},
+      ext3 = #{ext3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectPresentTreasureRecords" parameterType="java.lang.String" resultType="map">
+     select m.name,m.icon,r.ceateTime,count(*) as counts from
+     snatch_treasure_record r left join memberfides0 m on r.mid = m.mid
+     where m.dateNo = #{0}
+     group by r.mid
+     order by ceateTime desc
+     limit 200
+  </select>
+
+  <select id="selectRecordCountsByMid"  resultType="map">
+     select range,count (*) as num
+     from snatch_treasure_record
+     where mid = #{0} and  dateNo = #{1}
+     group by range
+     order by range
+  </select>
+
+  <select id="selectRecordCountsByRange" resultType="map">
+     select count (*) as num
+     from snatch_treasure_record
+     where dateNo = #{0} and range = #{1}
+  </select>
+
+</mapper>

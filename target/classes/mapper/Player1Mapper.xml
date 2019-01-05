@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.dao.Player1Mapper" >
+  <resultMap id="BaseResultMap" type="com.qs.entity.Player1" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="day_time" property="dayTime" jdbcType="INTEGER" />
+    <result column="playing" property="playing" jdbcType="INTEGER" />
+    <result column="gp" property="gp" jdbcType="TINYINT" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="lookon" property="lookon" jdbcType="INTEGER" />
+    <result column="gametype" property="gametype" jdbcType="TINYINT" />
+  </resultMap>
+  <insert id="insert" parameterType="com.qs.entity.Player1" useGeneratedKeys="true" keyProperty="id">
+    insert into player1 (day_time, playing,
+      gp, type, lookon, gametype
+      )
+    values (#{dayTime,jdbcType=INTEGER}, #{playing,jdbcType=INTEGER},
+      #{gp,jdbcType=TINYINT}, #{type,jdbcType=VARCHAR}, #{lookon,jdbcType=INTEGER}, #{gametype,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.entity.Player1"  useGeneratedKeys="true" keyProperty="id">
+    insert into player1
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dayTime != null" >
+        day_time,
+      </if>
+      <if test="playing != null" >
+        playing,
+      </if>
+      <if test="gp != null" >
+        gp,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="lookon != null" >
+        lookon,
+      </if>
+      <if test="gametype != null" >
+        gametype,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dayTime != null" >
+        #{dayTime,jdbcType=INTEGER},
+      </if>
+      <if test="playing != null" >
+        #{playing,jdbcType=INTEGER},
+      </if>
+      <if test="gp != null" >
+        #{gp,jdbcType=TINYINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="lookon != null" >
+        #{lookon,jdbcType=INTEGER},
+      </if>
+      <if test="gametype != null" >
+        #{gametype,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+
+  <insert id="batchInsert" keyProperty="id" useGeneratedKeys="true" parameterType="list">
+    insert into player1 (id,day_time, playing,
+      gp, type, lookon, gametype
+      )
+    values
+    <foreach collection="list" item="player" index="index" open="(" separator="," close=")">
+      #{player.id},#{player.day_time},#{player.playing},#{player.gp},#{player.type},#{player.lookon},#{player.gametype}
+    </foreach>
+  </insert>
+
+</mapper>

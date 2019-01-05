@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <!--<properties  resource="jdbc.properties"/>-->
+
+    <classPathEntry location="E:/CompanyFile/Java/maven/repository/mysql/mysql-connector-java/5.1.38/mysql-connector-java-5.1.38.jar"/>
+
+    <context  id="mysqlTables"   targetRuntime="MyBatis3">
+
+        <property name="autoDelimitKeywords" value="false"/>
+        <!-- 生成的Java文件的编码 -->
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!-- 格式化java代码 -->
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <!-- 格式化XML代码 -->
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+
+        <commentGenerator>
+        <property name="suppressDate" value="true"/>
+        <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+        <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
+        <jdbcConnection  driverClass="com.mysql.jdbc.Driver"
+                         connectionURL="jdbc:mysql://127.0.0.1:3306/my_data_source?characterEncoding=utf-8"  userId="root"  password="123456"/>
+
+
+        <!-- java类型处理器
+            用于处理DB中的类型到Java中的类型，默认使用JavaTypeResolverDefaultImpl；
+            注意一点，默认会先尝试使用Integer，Long，Short等来对应DECIMAL和 NUMERIC数据类型；
+        -->
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+
+
+        <!--自动生成的实体的存放包路径 -->
+
+        <javaModelGenerator  targetPackage="com.qs.entity"
+
+                             targetProject="E:\IDEAWorkPlace\MyDemo\src\main\java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property  name="enableSubPackages"  value="true"/>
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property  name="trimStrings"  value="true"/>
+
+        </javaModelGenerator>
+
+
+
+        <!--自动生成的*Mapper.xml文件存放路径 -->
+
+        <sqlMapGenerator  targetPackage="mapper"
+                          targetProject="E:\IDEAWorkPlace\MyDemo\src\main\resources">
+
+            <property  name="enableSubPackages"  value="true"/>
+
+
+
+        </sqlMapGenerator>
+
+
+
+        <!--自动生成的*Mapper.java存放路径 -->
+
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.qs.dao"  targetProject="E:\IDEAWorkPlace\MyDemo\src\main\java">
+
+            <property  name="enableSubPackages"  value="true"/>
+
+        </javaClientGenerator>
+
+
+
+
+        <!--指定数据库表-->
+        <table schema="my_data_source" tableName="player"   domainObjectName="Player"
+
+               enableCountByExample="false"   enableUpdateByExample="false"
+
+               enableDeleteByExample="false"  enableSelectByExample="false"
+
+               selectByExampleQueryId="false">
+
+            <generatedKey  column="id"  sqlStatement="select uuid_short()"   identity="false"/>
+
+        </table>
+
+        <table schema="my_data_source" tableName="player1"   domainObjectName="Player1"
+
+               enableCountByExample="false"   enableUpdateByExample="false"
+
+               enableDeleteByExample="false"  enableSelectByExample="false"
+
+               selectByExampleQueryId="false">
+
+            <generatedKey  column="id"  sqlStatement="select uuid_short()"   identity="false"/>
+
+        </table>
+
+    </context>
+
+
+
+</generatorConfiguration>

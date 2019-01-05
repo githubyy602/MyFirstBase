@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.dao.PermissionMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.entity.Permission" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="permissions" property="permissions" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, permissions
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from permission
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from permission
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.entity.Permission" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      select uuid_short()
+    </selectKey>
+    insert into permission (id, permissions)
+    values (#{id,jdbcType=INTEGER}, #{permissions,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.entity.Permission" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      select uuid_short()
+    </selectKey>
+    insert into permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="permissions != null" >
+        permissions,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="permissions != null" >
+        #{permissions,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.entity.Permission" >
+    update permission
+    <set >
+      <if test="permissions != null" >
+        permissions = #{permissions,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.entity.Permission" >
+    update permission
+    set permissions = #{permissions,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectPermissionByRoleId" resultType="com.qs.entity.Permission" parameterType="java.lang.Integer">
+    SELECT p.* from permission p RIGHT JOIN (SELECT * from role_perm WHERE roleid = #{0}) r on p.id = r.permid;
+  </select>
+
+</mapper>
